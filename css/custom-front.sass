@@ -1,0 +1,203 @@
+// GOOGLE FONTS
+@import url('https://fonts.googleapis.com/css?family=Muli|Raleway')
+
+// VARIABLES
+$open-sans: 'Open Sans', sans-serif
+$raleway: 'Raleway', sans-serif
+$muli: 'Muli', sans-serif
+$blue: #0072ff
+$black: #333
+$subtle-black: #444756
+$light-subtle-black: #7e829c
+$grey: #555
+$light-grey: #999
+
+// TYPOGRAPHY
+h1
+  color: white
+  font-family: $muli !important
+  font-size: 40px
+  color: $black
+
+h2
+  color: white !important
+  font-family: $raleway !important
+  font-size: 28px !important
+  color: $black
+  margin: auto
+  margin-bottom: 25px !important
+
+h3
+  color: white !important
+  font-family: $raleway !important
+  font-size: 24px !important
+  color: $black
+  margin: auto
+  margin-bottom: 25px !important
+
+h4
+  color: white
+  font-family: $muli
+  font-size: 16px
+  color: $black
+
+h5
+  color: white
+  font-family: $muli !important
+  font-size: 15px !important
+  font-weight: bold !important
+  color: $black
+  margin-top: 25px
+
+p
+  font-family: $muli
+  font-size: 15px
+  color: $light-subtle-black
+
+// STYLING
+body
+  background-color: #f1f5fa
+  background-attachment: fixed
+  background-repeat: none
+  background-position: center
+  overflow: hidden
+
+
+// HEADER
+
+.container
+  background-color: rgba(0, 0, 0, 0.5) !important
+  width: 420px !important
+  margin: auto
+  padding: 35px !important
+  border-radius: 5px
+
+.logo
+  display: block
+  margin: auto
+  margin-top: 75px
+  margin-bottom: 35px
+  width: 250px
+  height: auto
+
+form
+  margin: auto
+  text-align: center
+
+input
+  border-radius: 0px
+  background-color: white
+  height: 45px
+  margin-bottom: 15px !important
+  border-radius: 5px
+  box-shadow: inset 1px 1px 10px 1px rgba(0,0,0,0.2)
+  font-family: $open-sans
+  color: #555555
+  width: 100%
+  padding-left: 10px
+
+input:focus
+
+input:hover
+
+input:active
+
+button.submit
+  float: right
+  background-color: $blue
+  padding: 12px 60px 12px 60px
+  border-radius: 5px
+  border: 0px
+  color: white
+  font-family: $muli
+  font-size: 13px
+
+  &:hover
+    background-color: #2a89ff
+
+
+button.continue
+  margin-left: 55%
+  background-color: $blue
+  padding: 12px 60px 12px 60px
+  border-radius: 5px
+  border: 0px
+  color: white
+  font-family: $muli
+  font-size: 13px
+
+  &:hover
+    background-color: #2a89ff
+    text-decoration: none
+
+
+.register
+  color: white
+  margin-top: 12px
+  font-family: $muli
+  font-size: 14px
+
+
+p.error
+  color: red
+  font-family: $muli
+  font-size: 14px
+  text-align: center
+
+
+p.error2
+  color: red
+  font-family: $muli
+  font-size: 14px
+  text-align: center
+  margin-bottom: 30px
+  padding: 8px 2px 8px 2px
+  border: 1px solid white
+
+
+p.success
+  color: #55ed2f
+  font-family: $muli
+  font-size: 14px
+  text-align: center
+  margin-bottom: 30px
+
+
+p.copyright
+  color: white
+  text-align: center
+  margin-top: 25px
+  opacity: 0.5
+  font-family: $muli
+  font-size: 12px
+
+
+p.login
+  color: white
+  text-align: center
+  font-family: $muli
+  font-size: 12px
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus
+  outline: none
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+  transition: background-color 5000s ease-in-out 0s
+
+a
+  text-decoration: none
+  color: white
+
+a:hover
+  text-decoration: none
+  color: $blue
+
+.alert
+  width: 100%
