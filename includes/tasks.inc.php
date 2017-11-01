@@ -30,6 +30,29 @@ function setProjects($conn) {
 
 	$sql = "INSERT INTO projects (uid, date, title, description, contact, company, value, stage, public) VALUES ('$uid', '$date', '$title', '$description', '$contact', '$company', '$value', '$stage', '$public')";
 	$result = mysqli_query($conn, $sql);
+
+	if (empty($contact)) {
+		header('Location: ../grids/projects');
+	} else {
+	$sql = "INSERT INTO contacts (name, company, owner) VALUES ('$contact', '$company', '$uid')";
+	$result = mysqli_query($conn, $sql);
+}
+
+	}
+}
+
+function setPeople($conn) {
+	if (isset($_POST['contactSubmit'])) {
+	$uid = $_SESSION['id'];
+	$contact = $_POST['name'];
+	$company = $_POST['company'];
+	$email = $_POST['email'];
+	$phone = $_POST['phone'];
+	$closeddeals = $_POST['closeddeals'];
+	$opendeals = $_POST['opendeals'];
+
+	$sql = "INSERT INTO contacts (name, company, email, phone, closeddeals, opendeals, owner) VALUES ('$contact', '$company', '$email', '$phone', '$closeddeals', '$opendeals', '$uid')";
+	$result = mysqli_query($conn, $sql);
 	}
 }
 
@@ -39,7 +62,7 @@ function getTasks($conn) {
 	$result = mysqli_query($conn, $sql);
 
 	while ($row = mysqli_fetch_assoc($result)) {
-
+		echo "<div class='form-check'>";
 		echo "<div class='checkbox'>";
 		echo "<label class='custom-control custom-checkbox'>";
 		echo "<input type='checkbox' class='custom-control-input'>";
@@ -48,6 +71,7 @@ function getTasks($conn) {
 		echo nl2br($row['task']);
 		echo "</span>";
 		echo "</label>";
+		echo "</div>";
 		echo "</div>";
 	}
 }
@@ -62,6 +86,170 @@ function checkTasks($conn) {
 		return false;
 	} else {
 		return true;
+	}
+}
+
+function checkTeams($conn) {
+	$uid = $_SESSION['id'];
+	$sql = "SELECT * FROM teams WHERE uid='$uid'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+	if (!$row) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function checkPeople($conn) {
+	$uid = $_SESSION['id'];
+	$sql = "SELECT * FROM contacts WHERE owner='$uid'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+	if (!$row) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function getContacts($conn) {
+	$uid = $_SESSION['id'];
+	$sql = "SELECT * FROM projects WHERE uid='$uid'";
+	$result = mysqli_query($conn, $sql);
+	$contact = $row['contact'];
+	$company = $row['company'];
+	$owner = $row['uid'];
+
+	$sql = "INSERT INTO contacts (name, company, owner) VALUES ('$contact', '$company', '$owner')";
+	$result = mysqli_query($conn, $sql);
+}
+
+function getPeople($conn) {
+	$uid = $_SESSION['id'];
+	$sql = "SELECT * FROM contacts WHERE owner='$uid'";
+
+	$result = mysqli_query($conn, $sql);
+
+	while ($row = mysqli_fetch_assoc($result)) {
+
+		echo "<tr>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['name']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['company']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['email']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['phone']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['closeddeals']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['opendeals']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['owner']);
+		echo "</p>";
+		echo "</td>";
+		echo "</tr>";
+
+		echo "<form class='delete-contact' method='POST' action='".deleteContacts($conn)."'>
+						<input type='hidden' name='name' value='".$row['name']."'>
+						<button class='btn btn-link delete' type='submit' name='contactDelete' onclick='return checkDelete()'><i class='fa fa-trash' aria-hidden='true'></i></button>
+					</form>
+					<form class='edit-contact' method='POST' action='editcontact'>
+						<input type='hidden' name='name' value='".$row['name']."'>
+						<input type='hidden' name='company' value='".$row['company']."'>
+						<input type='hidden' name='email' value='".$row['email']."'>
+						<input type='hidden' name='phone' value='".$row['phone']."'>
+						<input type='hidden' name='closeddeals' value='".$row['closeddeals']."'>
+						<input type='hidden' name='opendeals' value='".$row['opendeals']."'>
+						<input type='hidden' name='owner' value='".$row['owner']."'>
+						<button class='btn btn-link edit'><i class='fa fa-pencil' aria-hidden='true'></i></button>
+					</form>";
+	}
+}
+
+function getOrganizations($conn) {
+	$uid = $_SESSION['id'];
+	$sql = "SELECT * FROM contacts WHERE owner='$uid'";
+
+	$result = mysqli_query($conn, $sql);
+
+	while ($row = mysqli_fetch_assoc($result)) {
+
+		echo "<tr>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['company']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['name']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['email']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['phone']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['closeddeals']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['opendeals']);
+		echo "</p>";
+		echo "</td>";
+		echo "<td>";
+		echo "<p class='contacts'>";
+		echo ($row['owner']);
+		echo "</p>";
+		echo "</td>";
+		echo "</tr>";
+
+		echo "<form class='delete-contact' method='POST' action='".deleteContacts($conn)."'>
+						<input type='hidden' name='name' value='".$row['name']."'>
+						<button class='btn btn-link delete' type='submit' name='contactDelete' onclick='return checkDelete()'><i class='fa fa-trash' aria-hidden='true'></i></button>
+					</form>
+					<form class='edit-contact' method='POST' action='editcontact'>
+						<input type='hidden' name='name' value='".$row['name']."'>
+						<input type='hidden' name='company' value='".$row['company']."'>
+						<input type='hidden' name='email' value='".$row['email']."'>
+						<input type='hidden' name='phone' value='".$row['phone']."'>
+						<input type='hidden' name='closeddeals' value='".$row['closeddeals']."'>
+						<input type='hidden' name='opendeals' value='".$row['opendeals']."'>
+						<input type='hidden' name='owner' value='".$row['owner']."'>
+						<button class='btn btn-link edit'><i class='fa fa-pencil' aria-hidden='true'></i></button>
+					</form>";
 	}
 }
 
@@ -80,7 +268,9 @@ function checkProjects($conn) {
 
 function getProjects1($conn) {
 	$uid = $_SESSION['id'];
-	$sql = "SELECT * FROM projects WHERE stage='1' AND uid='$uid' OR stage='1' AND public='0'";
+	$sql = "SELECT * FROM user WHERE uid='$uid'";
+	$result = mysqli_query($conn, $sql);
+	$sql = "SELECT * FROM projects WHERE stage='1' AND uid='$uid' OR stage='1' AND public='0' AND team='teamId'";
 	$result = mysqli_query($conn, $sql);
 
 	while ($row = mysqli_fetch_assoc($result)) {
@@ -299,6 +489,16 @@ function deleteTasks($conn) {
 }
 }
 
+function deleteContacts($conn) {
+	if (isset($_POST['taskContacts'])) {
+
+		$name = $_POST['name'];
+
+		$sql = "DELETE FROM contacts WHERE name='$name'";
+		$result = mysqli_query($conn, $sql);
+		header("Refresh:0");
+}
+}
 
 function deleteProjects($conn) {
 	if (isset($_POST['projDelete'])) {
@@ -310,12 +510,61 @@ function deleteProjects($conn) {
 }
 }
 
+function setTeams($conn) {
+	if (isset($_POST['teamSubmit'])) {
+	$uid = $_SESSION['id'];
+	$date = $_POST['date'];
+	$team = $_POST['team'];
+	$description = $_POST['description'];
+	$members = $_POST['members'];
+	$primary = $_POST['isdefault'];
+
+	if (empty($team)) {
+		header('Location: ../grids/create-team.php?error=empty');
+	exit();
+	}
+
+	$sql = "INSERT INTO teams (uid, date, team, description, members, isdefault) VALUES ('$uid', '$date', '$team', '$description', '$members', '$primary')";
+	$result = mysqli_query($conn, $sql);
+	}
+}
+
+function getTeams($conn) {
+	$uid = $_SESSION['id'];
+	$sql = "SELECT * FROM teams WHERE uid='$uid'";
+	$result = mysqli_query($conn, $sql);
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		echo "<div class='team'>";
+		echo "<h4 class='team'>";
+		echo nl2br($row['team'])."</button><br>";
+		echo "</h3>";
+		echo "<p class='team-desc'>";
+		echo nl2br($row['description'])."<br>";
+		echo "</p>";
+
+		if ($row['isdefault'] = '1') {
+			$primary ='Primary';
+		} else if ($row['isdefault'] = '0') {
+			$primary = 'Not primary';
+		}
+
+		echo "<p class='primary'>";
+		echo $primary."<br>";
+		echo "</p>";
+		echo "<p class='team-members'>";
+		echo $row['members'];
+		echo "</p>";
+		echo "</div>";
+	}
+}
+
 function getName($conn) {
 	$id = $_SESSION['id'];
-	$sql = "SELECT first FROM user WHERE id='$id'";
+	$sql = "SELECT first, last FROM user WHERE id='$id'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
-	echo $row['first'];
+	echo $row['first']." ".$row['last'];
 }
 
 ?>
