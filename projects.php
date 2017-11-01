@@ -9,7 +9,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light first">
-  <a class="navbar-brand" href="#"><img class="logo2" src="img/logo2.png"></img></a>
+  <a class="navbar-brand" href="#"><img class="logo2" src="img/logo.svg"></img></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,27 +22,25 @@
         <a class="nav-link active" href="projects">Projects <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Team</a>
+        <a class="nav-link" href="team">Team</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          New
+          Contacts
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="new-project">Project</a>
-          <a class="dropdown-item" href="new-task">Task</a>
-          <a class="dropdown-item" href="#">Reminder</a>
+          <a class="dropdown-item" href="people"><i class="fa fa-user" aria-hidden="true"></i> People</a>
+          <a class="dropdown-item" href="organizations"><i class="fa fa-building" aria-hidden="true"></i> Organizations</a>
         </div>
       </li>
     </ul>
   </div>
-  <ul class="nav navbar-nav navbar-right">
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown right">
       <a class="nav-link dropdown-toggle" href="settings" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      My Account
+      <?php getName($conn); ?>
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">User Panel</a>
+        <a class="dropdown-item" href="user-panel">User Panel</a>
         <a class="dropdown-item" href="#">Settings</a>
         <?php
       if (isset($_SESSION['id'])) {
@@ -51,7 +49,6 @@
       ?>
       </div>
     </li>
-  </ul>
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light second">
@@ -61,10 +58,10 @@
         <a class="nav-link active-second" href="#">All projects</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Team</a>
+        <a class="nav-link" href="#">Public</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">My team</a>
+        <a class="nav-link" href="#">Personal</a>
       </li>
     </ul>
   </div>
@@ -75,22 +72,22 @@
   <div class="table-wrapper">
 
     <div class="btn-group projectBtn" role="group" aria-label="Button group with nested dropdown">
-      <button type="button" class="btn btn-secondary"><i class="fa fa-random" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-secondary"><i class="fa fa-code-fork" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-secondary pointer"><i class="fa fa-random" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-secondary pointer"><i class="fa fa-code-fork" aria-hidden="true"></i></button>
 
       <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Pipeline
+        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Gridflow
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <a class="dropdown-item" href="#">Dropdown link</a>
-          <a class="dropdown-item" href="#">Dropdown link</a>
+          <a class="dropdown-item" href="#">Graph view</a>
+          <a class="dropdown-item" href="#">List view</a>
         </div>
       </div>
     </div>
 
     <!-- Trigger/Open The Modal -->
-  <button id="myBtn" class="btn btn-primary projectBtn">Add Project</button>
+  <button id="myBtn" class="btn btn-primary projectBtn pointer">Add Project</button>
 
   <!-- The Modal -->
   <div id="myModal" class="modal">
@@ -131,7 +128,10 @@
           <p class='project create'>Client company</p>
           <textarea rows='1' name='company' class='company'></textarea><br>
           <p class='project create'>Deal value</p>
+          <div class='input-group'>
           <textarea rows='1' name='value' class='value'></textarea>
+          <span class='input-group-addon value' id='basic-addon1'>€</span>
+          </div>
           <br>
             <p class='project create'>Project stage</p>
             <div class='btn-group stages' data-toggle='buttons'>

@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-<body style="background-image:url(img/bg.jpg)">
+<body>
 
 <head>
   <meta charset="UTF-8">
@@ -76,7 +76,7 @@ else if (strpos($url, 'error=password') !==false) {
 </div>
 </div>
 
-<p class="copyright">© 2017 PauseDigital Ltd. All rights reserved.</p>
+<p class="footer">© 2017 PauseDigital Ltd. All rights reserved.</p>
 
 </body>
 </html>

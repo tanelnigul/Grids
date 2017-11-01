@@ -5,7 +5,7 @@
 ?>
 
 <head>
-  <title>Grids - Edit Project</title>
+  <title>Grids - Edit Contact</title>
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light first">
@@ -76,54 +76,48 @@
 
 <div class="col-sm-12">
 
-<h1>Edit Project</h1>
+<h2 class="title">Edit contact</h2>
 
 <?php
-  $pid = $_POST['pid'];
   $uid = $_SESSION['id'];
-  $date = $_POST['date'];
-  $title = $_POST['title'];
-  $description = $_POST['description'];
-  $contact = $_POST['contact'];
+  $name = $_POST['name'];
   $company = $_POST['company'];
-  $value = $_POST['value'];
-  $stage = $_POST['stage'];
-  $public = $_POST['public'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $closeddeals = $_POST['closeddeals'];
+  $opendeals = $_POST['opendeals'];
+  $owner = $_POST['owner'];
 
-echo "</p>
-    <form id='edit-form' method='POST' action='".editProject($conn)."'>
-    <input type='hidden' name='pid' value='".$pid."'>
+echo "
+    <form id='edit-form' method='POST' action='".editContact($conn)."'>
     <input type='hidden' name='uid' value='".$uid."'>
-    <input type='hidden' name='date' value='".$date."'>
-    <div class='row'><div class='col-sm-6'><textarea name='title' class='title'>".$title."</textarea><br></div>
-    <div class='col-sm-6'><textarea name='contact' class='contact'>".$contact."</textarea><br></div></div>
-    <div class='row'><div class='col-sm-12'><textarea name='description' class='description'>".$description."</textarea><br></div></div>
-    <textarea name='company' class='company'>".$company."</textarea>
-    <textarea name='value' class='value'>".$value."</textarea>
-    <textarea name='stage' class='stage'>".$stage."</textarea>
-    <textarea name='public' class='public'>".$public."</textarea>
-    <button type='submit' name='projSubmit' class='project'>Save</button>
+    <div class='row'><div class='col-sm-6'><textarea name='name' class='title'>".$name."</textarea><br></div>
+    <div class='col-sm-6'><textarea name='company' class='contact'>".$company."</textarea><br></div></div>
+    <div class='row'><div class='col-sm-12'><textarea name='email' class='description'>".$email."</textarea><br></div></div>
+    <textarea name='phone' class='company'>".$phone."</textarea>
+    <textarea name='closeddeals' class='value'>".$closeddeals."</textarea>
+    <textarea name='opendeals' class='stage'>".$opendeals."</textarea>
+    <textarea name='owner' class='public'>".$owner."</textarea>
+    <button type='submit' name='contactSubmit' class='project'>Save</button>
     </form>
     </div>";
 
-function editProject($conn) {
-  if (isset($_POST['projSubmit'])) {
-  $uid = $_SESSION['id'];
-  $pid = $_POST['pid'];
-  $date = $_POST['date'];
-  $title = $_POST['title'];
-  $description = $_POST['description'];
-  $contact = $_POST['contact'];
-  $company = $_POST['company'];
-  $value = $_POST['value'];
-  $stage = $_POST['stage'];
-  $public = $_POST['public'];
+function editContact($conn) {
+  if (isset($_POST['contactSubmit'])) {
+    $uid = $_SESSION['id'];
+    $name = $_POST['name'];
+    $company = $_POST['company'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $closeddeals = $_POST['closeddeals'];
+    $opendeals = $_POST['opendeals'];
+    $owner = $_POST['owner'];
 
-  $sql = "UPDATE projects
-            SET title = '$title', description = '$description', contact = '$contact', company = '$company', value = '$value', stage = '$stage', public = '$public'
-          WHERE pid='$pid'";
+  $sql = "UPDATE contacts
+            SET name = '$name', company = '$company', email = '$email', phone = '$phone', closeddeals = '$closeddeals', opendeals = '$opendeals', owner = '$owner'
+          WHERE name='$name'";
   $result = mysqli_query($conn, $sql);
-  header("Location: projects.php");
+  header("Location: people.php");
   }
 }
 ?>

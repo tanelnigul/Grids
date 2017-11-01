@@ -41,7 +41,7 @@ p {
   color: #7e829c; }
 
 body {
-  background-color: #f1f5fa;
+  background-image: url(../img/bg.jpg);
   background-attachment: fixed;
   background-repeat: none;
   background-position: center;
@@ -59,7 +59,7 @@ body {
   margin: auto;
   margin-top: 75px;
   margin-bottom: 35px;
-  width: 250px;
+  width: 280px;
   height: auto; }
 
 form {
@@ -88,7 +88,8 @@ button.submit {
   font-family: "Muli", sans-serif;
   font-size: 13px; }
   button.submit:hover {
-    background-color: #2a89ff; }
+    background-color: #2a89ff;
+    cursor: pointer; }
 
 button.continue {
   margin-left: 55%;
@@ -131,13 +132,13 @@ p.success {
   text-align: center;
   margin-bottom: 30px; }
 
-p.copyright {
+p.footer {
   color: white;
   text-align: center;
   margin-top: 25px;
   opacity: 0.5;
   font-family: "Muli", sans-serif;
-  font-size: 12px; }
+  font-size: 13px; }
 
 p.login {
   color: white;

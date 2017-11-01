@@ -6,6 +6,8 @@ $open-sans: 'Open Sans', sans-serif
 $raleway: 'Raleway', sans-serif
 $muli: 'Muli', sans-serif
 $blue: #0072ff
+$red: #d92f2f
+$green: #3eda75
 $black: #333
 $subtle-black: #444756
 $light-subtle-black: #7e829c
@@ -43,7 +45,7 @@ h5
 p
   font-family: $muli
   font-size: 15px
-  color: $light-subtle-black
+  color: $subtle-black
 
 // STYLING
 body
@@ -65,8 +67,11 @@ header
   color: white
 
 .logo2
-  width: 35px
-  height: 42px
+  height: 50px
+  opacity: 1
+
+  &:hover
+    opacity: 0.8
 
 // NAVIGATION BAR
 nav
@@ -94,7 +99,7 @@ ul
   font-size: 15px
   float: right
 
-li
+li.nav-item
   display: inline-block
   margin-left: 35px
   vertical-align: middle
@@ -102,17 +107,22 @@ li
 .fa
   display: inline !important
 
-.navbar-right
+.nav-item.right
+  float: right
   width: 200px
 
 .nav-link
   padding: 25px 0px 25px 0px !important
   color: $light-subtle-black !important
+  cursor: pointer
 
   &:hover
     color: $subtle-black !important
   &:active
     color: $subtle-black !important
+
+.pointer
+  cursor: pointer
 
 .active
   border-bottom: 2px solid $blue
@@ -174,13 +184,15 @@ h5.index
 .footer
   text-align: center
   margin-bottom: 25px
+  color: $light-subtle-black
 
 // PROJECT
 
 h3.project
-  font-family: $raleway
-  font-size: 15px
-  font-weight: bold
+  font-family: $muli
+  font-size: 16px
+  font-weight: 500
+  color: $black
 
 h3.project-header
   color: $black
@@ -194,6 +206,7 @@ h3.project-header
   border-right: 1px solid rgba(0,0,0,0.1)
   vertical-align: center
   width: 20%
+
 
   &:first-child
     border-left: none
@@ -254,6 +267,7 @@ a.new-project
 
 .btn.btn-link.delete
   opacity: 0.2
+  display: none
 
   &:hover
     opacity: 1
@@ -261,6 +275,7 @@ a.new-project
 
 .btn.btn-link.edit
   opacity: 0.2
+  display: none
 
   &:hover
     opacity: 1
@@ -376,6 +391,12 @@ textarea
   &:focus
     border: 1px solid $blue
 
+span.input-group-addon.value
+  border-top-left-radius: 0px
+  border-bottom-left-radius: 0px
+  height: 35px
+  vertical-align: middle
+
 textarea.title
   resize: none
 
@@ -387,13 +408,15 @@ textarea.company
 
 textarea.value
   resize: none
+  border-top-right-radius: 0px
+  border-bottom-right-radius: 0px
 
 p.project.create
   margin-top: 10px
   margin-bottom: 5px
   color: $light-subtle-black
 
-h1.title
+h1.title.new-project
   font-size: 24px
   width: 100%
 
@@ -437,5 +460,178 @@ h1.title
   width: 100%
   height: 35px
 
+.btn-primary.contact
+  cursor: pointer
+  width: 100%
+  height: 35px
+  margin-top: 20px
+
 .alert-danger.project
   width: 100%
+
+div.team
+  padding: 20px
+  margin-bottom: 25px
+  border-left: 2px solid $blue
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.2)
+  border-top-right-radius: 5px
+  border-bottom-right-radius: 5px
+  transition: 100ms
+
+  &:hover
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.3)
+    border-left: 3px solid $blue
+    transition: 100ms
+
+div.team2
+  padding: 20px
+  margin-bottom: 25px
+  border-left: 2px solid $green
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.2)
+  border-top-right-radius: 5px
+  border-bottom-right-radius: 5px
+  transition: 100ms
+
+  &:hover
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.3)
+    border-left: 3px solid $green
+    transition: 100ms
+
+h3.team
+  font-size: 24px
+
+p.team-desc
+
+p.team-members
+  color: $light-subtle-black
+
+  &:hover
+    color: $blue
+
+div.profile-pic
+  display: inline-block
+  width: 150px
+  height: 150px
+  background-position: center center
+  background-size: cover
+  border-radius: 15px
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2)
+
+.profile-pic:hover
+  width: 150px
+  height: 150px
+  opacity: 0.9
+  border-radius: 15px
+
+#change-profile-pic
+  height: 150px
+  width: 150px
+  position: absolute
+  border-radius: 15px
+  text-align: center
+  background-color: rgba(1, 101, 199, 0.3)
+  margin-top: -155px
+  color: white
+  line-height: 150px
+  font-family: $muli
+  opacity: 0
+  transition: 200ms
+
+
+#change-profile-pic:hover
+  opacity: 1
+  border: 2px solid $blue
+  transition: 200ms
+
+a.change-pic
+  color: white
+  text-decoration: none
+
+h4.welcome
+  font-family: $muli
+
+#user-info
+  display: inline-block
+  vertical-align: top
+  margin-left: 20px
+
+ul.profile
+  margin-right: 25px
+  padding-left: 25px
+  border-left: 2px solid $light-subtle-black
+
+li.profile
+  margin-bottom: 10px
+
+a.profile
+  color: $light-subtle-black
+
+  &:hover
+    color: $subtle-black
+    text-decoration: none
+
+.col.contact
+  width: 18%
+  border: 1px solid rgba(0,0,0,0.1)
+  padding: 5px
+  padding-left: 10px
+  color: $subtle-black
+  flex-basis: auto
+
+.col.deals
+  width: 5%
+  border: 1px solid rgba(0,0,0,0.1)
+  padding: 5px
+  padding-left: 10px
+  color: $subtle-black
+  flex-basis: auto
+
+h2.title
+  margin-bottom: 25px
+
+h2.title.no-margin
+  margin-bottom: 8px
+
+h4.sub-title
+  display: inline-block
+  font-family: $raleway
+  font-size: 20px
+  font-weight: 100
+  color: $light-subtle-black
+  margin-bottom: 25px
+
+.btn-primary.add-people
+  float: right
+  margin-left: 25px
+
+.btn-primary.create-team
+  float: right
+
+.btn-secondary.join-team
+  float: right
+  margin-left: 15px
+
+h4.team
+  font-family: $muli
+  font-size: 24px
+
+p.contacts
+  margin-top: 5px !important
+  margin-bottom: 5px !important
+  color: $subtle-black
+
+.form-control.search
+  height: 35px
+
+.input-group
+  height: 36px
+  width: 400px !important
+  float: right
+
+.input-group-btn
+  height: 36px
+
+.btn-secondary.search
+  border-top-right-radius: 5px !important
+  border-bottom-right-radius: 5px !important
+  width: 60px
